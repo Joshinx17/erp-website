@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>School ERP System</title>
+    <style>
+       /* Add your CSS styles here */
+       body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #3498db, #2c3e50);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #000000, #2c3e50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        iframe {
+            width: 100%;
+            height: 600px; /* Increase the height as needed */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://thumbs.dreamstime.com/b/haj-letter-logo-design-white-background-haj-creative-initials-letter-logo-concept-haj-letter-design-haj-letter-logo-design-243825000.jpg" alt="HAJ" width="140" height="140">
+        <h1>Welcome to the School ERP System</h1>
+    </header>
+    <nav>
+        <button onclick="showTab('home')">Home</button>
+        <button onclick="showTab('attendance')">Attendance</button>
+        <button onclick="showTab('assignments')">Assignments</button>
+        <button onclick="showTab('examResults')">Exam Results</button>
+        <button onclick="showTab('notifications')">Notifications</button>
+    </nav>
+    <div class="container" id="content">
+        <h2>Home</h2>
+        <p>Rated one of the best online erp websites in the world.
+        This website is built to render your needs and specifically help you locate your university updates
+            :)
+        </p>
+    </div>
+
+    <script>
+    
+        // Initialize an array to store uploaded exam results
+        const examResults = [];
+
+        // Notifications data
+        const notifications = [
+            { title: 'SPORTS TRIALS', details: 'SPORTS TRIAL FOR FOOTBALL, BADMINTON AND CRICKET TO START FROM 9TH-13TH NOV' },
+            { title: 'MUSIC CLUB AUDITION', details: 'MUSIC CLUB AUDITIONS TO BE HELD FROM 4TH-7TH NOV' },
+            { title: 'GARNIER INDIA VISIT', details: 'GARNIER INDIA ARE ORGANIZING AN EVENT IN BLOCK-4 LAWN ON 17TH NOV ' },
+            { title: 'DRAMA CLUB AUDITION', details: 'DRAMATICS CLUB NATYAKRITI TO HOST AUDITIONS FROM 5TH-7TH NOV' },
+            { title: 'MANALI-KASOL TRIP', details: 'UNIVERSITY IS ORGANISING A TRIP TO MANALI-KASOL FROM 17TH-22 DECEMBER' },
+            { title: 'INDUSTRIAL TRIP', details: 'UNIVERSITY IS ORGANISING A INDUSTRIAL TRIP TO IMC PRAGATI-MAIDAN FROM 17TH-22 NOVEMBER' },
+            { title: 'VIOLENT CONDUCT', details: '4 STUDENTS OF BBA-3C HAVE BEEN RESTICATED FROM THE UNIVERSITY FOR THE MONTH DUE TO VIOLENT CONDUCT' },
+            { title: 'WU-SHANG CLAN', details: 'ARPIT BALA TO PERFORM IN SHARDA UNIVERSITY ON 4TH DECEMBER' },
+            { title: 'DIWLALI-BREAK', details: 'UNIVERSITY WILL REMAIN CLOSED FROM 9TH-15TH NOVEMBER ON THE NOTICE OF DIWALI-BREAK' },
+        ];
+
+        // Function to display the home page
+        function showTab(tabName) {
+            const content = document.getElementById('content');
+            switch (tabName) {
+                case 'home':
+                    content.innerHTML = `
+                        <h2>Home</h2>
+                        <p>Welcome to the School ERP System. Select an option from the navigation.</p>
+                    `;
+                    break;
+                case 'attendance':
+                    content.innerHTML = `
+                        <h2>Attendance</h2>
+                        <p>Display attendance information here.</p>
+                        <input type="file" id="attendanceFile" accept=".pdf" />
+                        <button onclick="viewFile('attendanceFile')">Open Attendance File</button>
+                    `;
+                    break;
+                case 'assignments':
+                    content.innerHTML = `
+                        <h2>Assignments</h2>
+                        <p>Display assignment information here.</p>
+                        <input type="file" id="assignmentFile" accept=".pdf" />
+                        <button onclick="viewFile('assignmentFile')">Open Assignment File</button>
+                    `;
+                    break;
+                case 'examResults':
+                    content.innerHTML = `
+                        <h2>Exam Results</h2>
+                        <ul id="examResultList">
+                        </ul>
+                        <input type="file" id="examResultFile" accept=".pdf, .doc, .docx" />
+                        <button onclick="viewFile('examResultFile')">Open Exam Result File</button>
+                    `;
+                    break;
+                case 'notifications':
+                    content.innerHTML = `
+                        <h2>Notifications</h2>
+                        <ul id="notificationList">
+                        ${notifications.map((notification, index) => `
+                            <li><a href="#" onclick="showNotificationDetails(${index})">${notification.title}</a></li>
+                        `).join('')}
+                        </ul>
+                    `;
+                    break;
+            }
+        }
+
+        // Function to open and view files in an iframe
+        function viewFile(fileInputId) {
+            const fileInput = document.getElementById(fileInputId);
+            const file = fileInput.files[0];
+
+            if (file) {
+                const content = document.getElementById('content');
+                content.innerHTML = `
+                    <h2>File Viewer</h2>
+                    <iframe src="${URL.createObjectURL(file)}"></iframe>
+                `;
+            } else {
+                alert('Please select a file to view.');
+            }
+        }
+
+        // Function to upload exam result
+        function uploadExamResult() {
+            const examResultFileInput = document.getElementById('examResultFile');
+            const file = examResultFileInput.files[0];
+
+            if (file) {
+                // In a real system, you would upload the exam result file to a server.
+                // For this example, we'll just add it to the list.
+                examResults.push(file.name);
+                updateExamResultList();
+            } else {
+                alert('Please select a file to upload.');
+            }
+        }
+
+        // Function to update the exam result list
+        function updateExamResultList() {
+            const examResultList = document.getElementById('examResultList');
+            examResultList.innerHTML = examResults.map(result => {
+                if (result.endsWith('.pdf')) {
+                    return `<li><a href="#" onclick="viewFile('${result}')">${result}</a></li>`;
+                } else {
+                    return `<li>${result}</li>`;
+                }
+            }).join('');
+        }
+
+        // Function to view a PDF
+        function viewPdf(pdfName) {
+            // In a real system, you would load and display the PDF content.
+            alert(`Viewing PDF: ${pdfName}`);
+        }
+
+        // Function to show notification details
+        function showNotificationDetails(index) {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h2>Notification Details</h2>
+                <h3>${notifications[index].title}</h3>
+                <p>${notifications[index].details}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
