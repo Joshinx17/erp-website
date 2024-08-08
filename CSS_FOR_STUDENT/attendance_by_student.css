@@ -1,0 +1,124 @@
+/* Common Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark text color */
+}
+
+/* Header styles */
+header {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff; /* White text color */
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* White text color */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f8f9fa; /* Light gray hover text color */
+}
+
+/* Teacher's Section Styles */
+.teacher-section {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin-bottom: 20px;
+}
+
+.teacher-section h2 {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.teacher-section label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.teacher-section button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.teacher-section button:hover {
+    background-color: #0056b3;
+}
+
+.teacher-section input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Student's Section Styles */
+.student-section {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.student-section h2 {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.attendance-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.attendance-list li {
+    margin-bottom: 10px;
+}
+
+.attendance-list li span {
+    font-weight: bold;
+}
+
+/* Footer styles */
+footer {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff; /* White text color */
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .teacher-section,
+    .student-section {
+        padding: 10px;
+    }
+
+    .teacher-section h2,
+    .student-section h2 {
+        font-size: 18px;
+    }
+}

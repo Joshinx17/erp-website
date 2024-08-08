@@ -1,0 +1,41 @@
+/* Resetting default margin and padding */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Setting default font */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+    background-color: #000; /* Black background for header */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px; /* Adjust spacing between menu items */
+}
+
+nav ul li a {
+    color: #fff; /* White text color for menu links */
+    text-decoration: none;
+}
+
+/* Footer styles */
+

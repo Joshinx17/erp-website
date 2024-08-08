@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Attendance Page</title>
+    <link rel="stylesheet" type="text/css" href="../CSS_FOR_TEACHER/attendance_by_teacher.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Teacher</h1>
+        <nav>
+            <ul>
+                <li><a href="index3.html">Profile</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="assign.html">Assignments</a></li>
+                <li><a href="result.html">Exam Results</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+
+            </ul>
+            <li><a href="../HTML/index.html"><b>Logout</b></a></li>
+
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Teacher Attendance Page</h2>
+            <form id="attendanceForm">
+                <label><input type="checkbox" name="student" value="student1"> Student 1</label>
+                <label><input type="checkbox" name="student" value="student2"> Student 2</label>
+                <label><input type="checkbox" name="student" value="student3"> Student 3</label>
+                <button type="button" onclick="markAttendance()">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HAJ ERP</p>
+    </footer>
+
+    <script>
+        function markAttendance() {
+            const form = document.getElementById("attendanceForm");
+            const students = form.querySelectorAll("input[type='checkbox']:checked");
+            const studentNames = Array.from(students).map(student => student.value);
+
+            // Send student names to the server or another page
+            // Here, I'm just logging them for demonstration
+            console.log("Marked attendance for students: ", studentNames);
+            // You can also send this data to the server using AJAX
+        }
+    </script>
+</body>
+</html>

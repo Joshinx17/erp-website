@@ -1,0 +1,78 @@
+/* Resetting default margin and padding */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Setting default font */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+    background-color: #000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px; /* Adjust spacing between menu items */
+}
+
+nav ul li a {
+    color: #fff; /* White text color for menu links */
+    text-decoration: none;
+}
+
+.h1{
+    color: white;
+}
+
+.about-section {
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/481/412/938/death-star-digital-art-star-wars-wallpaper-preview.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 150px; 
+    text-align: center;
+    font-size: 20px;
+}
+
+.synopsis-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Background color with alpha value */
+    padding: 20px; 
+    overflow: hidden; /* Hide overflow */
+}
+
+.synopsis {
+    color: transparent; /* Make the text transparent initially */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    display: inline-block; /* Needed for the animation */
+}
+
+/* Typing animation */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.synopsis.typing-animation {
+    color: white; /* Change text color to white */
+    animation: typing 8s steps(8000, end); /* Increase duration and steps */
+}
+
+
+

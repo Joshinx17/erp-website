@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Bootstrap CSS CDN (using Bootstrap Lux theme) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <h1 class="mb-0">Student Dashboard</h1>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="index2.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="attendance.html">Attendance</a></li>
+                <li class="nav-item"><a class="nav-link" href="assign.html">Assignment</a></li>
+                <li class="nav-item"><a class="nav-link" href="exams.html">Upcoming Exams</a></li>
+                <li class="nav-item"><a class="nav-link" href="result.html">Results</a></li>
+                <li class="nav-item"><a class="nav-link" href="notifications.html">Notifications</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="../HTML/index.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <section id="attendance">
+            <h2 class="text-primary mb-4">Upcoming Exam</h2>
+            <div class="attendance-section">
+                <div class="student-list">
+                    <p>DBMS : <span id="student1">Exam Given</span></p>
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-primary text-white py-4">
+        <div class="container">
+            &copy; 2024 HAJ University
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (optional, for certain components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- JavaScript for marking attendance -->
+    <script>
+        // Function to mark attendance
+        function markAttendance() {
+            const presentStudents = ["student1", "student2", "student3"];
+            presentStudents.forEach(studentId => {
+                const studentElement = document.getElementById(studentId);
+                studentElement.textContent = "Present";
+            });
+        }
+    </script>
+</body>
+</html>

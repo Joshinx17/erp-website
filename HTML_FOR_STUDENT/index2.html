@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Bootstrap CSS CDN (using Bootstrap Lux theme) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS_FOR_STUDENT/styles_student_home.css">
+    <style>
+        /* Additional CSS for Profile Section */
+        #profileInfo {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #profileInfo p {
+            margin: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+        }
+        #profileInfo p:last-child {
+            border-bottom: none;
+        }
+        #profileInfo strong {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <h1 class="mb-0">Student Dashboard</h1>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="index2.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="attendance.html">Attendance</a></li>
+                <li class="nav-item"><a class="nav-link" href="assign.html">Assignment</a></li>
+                <li class="nav-item"><a class="nav-link" href="exams.html">Upcoming Exams</a></li>
+                <li class="nav-item"><a class="nav-link" href="result.html">Results</a></li>
+                <li class="nav-item"><a class="nav-link" href="notifications.html">Notifications</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="../HTML/index.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <section id="profile">
+            <h2 class="text-primary mb-4"><img src="https://t3.ftcdn.net/jpg/05/65/36/40/360_F_565364077_7Bl6Aum7DwckrOvRjjDfo4MvedE2V6Xo.jpg" alt="user-image" style="width: 50px; height: 50px;"> Profile</h2>
+            <div id="profileInfo">
+                <!-- Profile information will be inserted here dynamically -->
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-primary text-white py-4">
+        <div class="container">
+            &copy; 2024 HAJ University
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN (optional, for certain components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- JavaScript for profile information -->
+    <script>
+        // Sample profile data (replace this with actual data)
+        var profileData = {
+            name: "Joshin",
+            class: "10th Grade",
+            rollNumber: "18",
+            admissionNumber: "456789",
+            dob: "17-06-2003",
+            phoneNumber: "+1234567890"
+        };
+
+        // Function to populate profile information
+        function populateProfile() {
+            var profileInfo = document.getElementById("profileInfo");
+            profileInfo.innerHTML = `
+                <p><strong>Name:</strong> ${profileData.name}</p>
+                <p><strong>Class:</strong> ${profileData.class}</p>
+                <p><strong>Roll Number:</strong> ${profileData.rollNumber}</p>
+                <p><strong>Admission Number:</strong> ${profileData.admissionNumber}</p>
+                <p><strong>Date of Birth:</strong> ${profileData.dob}</p>
+                <p><strong>Phone Number:</strong> ${profileData.phoneNumber}</p>
+            `;
+        }
+
+        // Call the function to populate profile information
+        populateProfile();
+    </script>
+</body>
+</html>

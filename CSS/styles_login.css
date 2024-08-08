@@ -1,0 +1,137 @@
+/* Resetting default margin and padding */
+body, h1, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Setting default font */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, #00ff00, #0000ff, #ff0000); /* Gradient background */
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite; /* Animation for gradient movement */
+}
+
+/* Header styles */
+header {
+    background-color: #000; /* Black background for header */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px; /* Adjust spacing between menu items */
+}
+
+.nav-links li a {
+    color: #fff; /* White text color for menu links */
+    text-decoration: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #0084ff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Main content styles */
+main {
+    text-align: center;
+    margin-top: 50px; /* Adjust margin from the top */
+}
+
+h1 {
+    color: #000; /* Black text color for heading */
+    margin-bottom: 20px; /* Adjust margin below heading */
+}
+
+form {
+    background-color: #f9f9f9; /* Light gray background for form */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adding shadow to form */
+    max-width: 400px; /* Adjust width as needed */
+    margin: 0 auto; /* Centering the form */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px; /* Adjust margin below label */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Footer styles */
+
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
