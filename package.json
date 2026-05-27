@@ -1,0 +1,18 @@
+{
+  "name": "haj-erp",
+  "version": "1.0.0",
+  "description": "HAJ School of Engineering - ERP System",
+  "scripts": {
+    "server": "cd server && node index.js",
+    "server:dev": "cd server && npx nodemon index.js",
+    "client": "cd client && npm run dev",
+    "client:build": "cd client && npm run build",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "seed": "cd server && node seed.js",
+    "start": "cd server && node index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
