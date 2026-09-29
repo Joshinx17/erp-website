@@ -17,7 +17,8 @@ export default function Login() {
     setLoading(true)
     try {
       const data = await login(email, password)
-      navigate(`/${data.role}/dashboard`)
+      const isInstitutionOperator = ['admin', 'SUPER_ADMIN', 'INSTITUTION_ADMIN', 'PRINCIPAL_DIRECTOR', 'ACADEMIC_ADMIN'].includes(data.role)
+      navigate(isInstitutionOperator ? '/dashboard' : `/${data.role}/dashboard`)
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed')
     } finally {
