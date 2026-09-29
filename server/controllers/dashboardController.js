@@ -11,11 +11,11 @@ const Notification = require('../models/Notification');
 exports.getAdminDashboard = async (req, res) => {
   try {
     const [totalStudents, totalTeachers, totalClasses, totalSubjects, recentNotifications] = await Promise.all([
-      Student.countDocuments(),
-      Teacher.countDocuments(),
-      Class.countDocuments(),
-      Subject.countDocuments(),
-      Notification.find().sort({ createdAt: -1 }).limit(5).populate('createdBy', 'name'),
+      Student.countDocuments(req.user.institution ? { institution: req.user.institution, deletedAt: null } : { deletedAt: null }),
+      Teacher.countDocuments(req.user.institution ? { institution: req.user.institution } : {}),
+      Class.countDocuments(req.user.institution ? { institution: req.user.institution } : {}),
+      Subject.countDocuments(req.user.institution ? { institution: req.user.institution } : {}),
+      Notification.find(req.user.institution ? { institution: req.user.institution } : {}).sort({ createdAt: -1 }).limit(5).populate('createdBy', 'name'),
     ]);
     res.json({ totalStudents, totalTeachers, totalClasses, totalSubjects, recentNotifications });
   } catch (error) {

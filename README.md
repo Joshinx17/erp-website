@@ -1,141 +1,32 @@
-# HAJ School of Engineering - ERP System
+# CampusOS
 
-A full-stack MERN (MongoDB, Express, React, Node.js) ERP website for school/college management with three roles: **Admin**, **Teacher**, and **Student**.
+CampusOS is an education operations platform for schools, colleges, universities, and coaching institutes. This repository is being progressively migrated from a small MERN education portal to a tenant-aware ERP; it intentionally delivers working vertical slices rather than a collection of disconnected placeholder modules.
 
-## Features
+## Current phase
 
-### Admin
-- Dashboard with system-wide statistics
-- User management (add/delete students & teachers)
-- Class & section management
-- Subject management with teacher assignments
-- Gallery management
+Phase 1 establishes the CampusOS application shell, responsive workspace, command palette (`Ctrl/Cmd + K`), initial institution/campus/academic-year models, expanded role and permission foundations, and soft-archive behavior for students. Legacy attendance, assignments, examinations, and notifications are retained while their data models are migrated.
 
-### Teacher
-- Dashboard with class overview
-- Mark student attendance
-- Create and manage assignments
-- View & grade submissions
-- Add exam results
-- Send notifications
+## Stack
 
-### Student
-- Dashboard with attendance %, upcoming exams & pending assignments
-- View personal attendance records (Present/Absent/Leave)
-- View assignments & submit files
-- View exam schedule
-- Check exam results & grades
+- React 18, Vite, React Router
+- Node.js, Express, Mongoose, MongoDB
+- JWT and bcrypt password hashing
 
-## Tech Stack
+## Run locally
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, React Router 6, Bootstrap 5, Vite |
-| Backend | Node.js, Express.js |
-| Database | MongoDB with Mongoose ODM |
-| Auth | JWT (JSON Web Tokens) + bcryptjs |
+1. Copy `.env.example` to `.env` and set a strong `JWT_SECRET` and MongoDB connection string.
+2. Install dependencies with `npm run install:all`.
+3. Optionally create legacy demo records with `npm run seed`.
+4. Run `npm run dev`; the API is served on port 5000 and the Vite client normally on port 5173.
 
-## Prerequisites
+Build the client with `npm run client:build`, then run `npm start` to serve it from Express.
 
-- **Node.js** (v18+)
-- **MongoDB** (local or Atlas URI)
+## Important development notes
 
-## Installation
+New institutional data must be scoped to an institution and, where appropriate, a campus. New protected endpoints must verify a server-side permission and scope every query by the authenticated user’s tenant. Do not rely on client-side control hiding for authorization, and do not hard-delete academic or financial history.
 
-```bash
-# 1. Clone the repo
-git clone <your-repo-url>
-cd erp-website
+Detailed design notes are in [Architecture](docs/ARCHITECTURE.md), [Database](docs/DATABASE.md), and [RBAC](docs/RBAC.md).
 
-# 2. Create .env file (or use the existing one)
-#    Edit .env with your MongoDB URI
+## Roadmap
 
-# 3. Install all dependencies
-npm run install:all
-
-# 4. Seed the database with demo data
-npm run seed
-
-# 5. Start development (backend + frontend concurrently)
-npm run dev
-```
-
-The server runs on **http://localhost:5000** and the client on **http://localhost:3000**.
-
-> The Vite dev server proxies `/api` and `/uploads` requests to the backend, so all API calls work seamlessly.
-
-## Production Build
-
-```bash
-# Build the React frontend
-npm run client:build
-
-# The production build is served by Express
-npm start
-```
-
-## Demo Credentials
-
-After running `npm run seed`, use these login credentials:
-
-| Role | Email | Password |
-|------|-------|----------|
-| **Admin** | admin@haj.edu | admin123 |
-| **Teacher** | sharma@haj.edu | teacher123 |
-| **Student** | joshin@haj.edu | student123 |
-| **Student** | priya@haj.edu | student123 |
-| **Student** | arjun@haj.edu | student123 |
-
-## Project Structure
-
-```
-erp-website/
-├── server/                  # Backend API
-│   ├── config/db.js         # MongoDB connection
-│   ├── controllers/         # Route handlers
-│   ├── middleware/           # Auth & upload middleware
-│   ├── models/              # Mongoose schemas
-│   ├── routes/              # Express routes
-│   ├── uploads/             # Uploaded files
-│   ├── seed.js              # Database seeder
-│   └── index.js             # Express entry point
-├── client/                  # React frontend
-│   ├── src/
-│   │   ├── api/             # Axios API client
-│   │   ├── components/      # Shared components
-│   │   ├── context/         # Auth context
-│   │   └── pages/           # Page components
-│   │       ├── public/      # Home, About, Gallery, Login
-│   │       ├── student/     # Student portal
-│   │       ├── teacher/     # Teacher portal
-│   │       └── admin/       # Admin portal
-│   ├── index.html
-│   └── vite.config.js
-├── .env                     # Environment variables
-├── .env.example             # Environment template
-└── package.json             # Root scripts
-```
-
-## API Endpoints
-
-| Endpoint | Description |
-|----------|-------------|
-| `POST /api/auth/login` | User login |
-| `GET /api/auth/me` | Get profile |
-| `POST /api/auth/register` | Register user (admin only) |
-| `GET/POST /api/students` | Student CRUD |
-| `GET/POST /api/teachers` | Teacher CRUD |
-| `GET/POST /api/classes` | Class CRUD |
-| `GET/POST /api/subjects` | Subject CRUD |
-| `POST/GET /api/attendance` | Attendance management |
-| `GET/POST /api/assignments` | Assignment management |
-| `POST/GET /api/submissions` | Submission management |
-| `GET/POST /api/exams` | Exam management |
-| `GET/POST /api/results` | Result management |
-| `GET/POST /api/notifications` | Notification management |
-| `GET/POST /api/gallery` | Gallery management |
-| `GET /api/dashboard/*` | Dashboard data per role |
-
-## Old Static Site
-
-The original HTML/CSS static files are preserved in the `HTML/`, `CSS/`, `HTML_FOR_STUDENT/`, `CSS_FOR_STUDENT/`, `HTML_FOR_TEACHER/`, and `CSS_FOR_TEACHER/` directories.
+The next vertical slices are a tenant-migrated Student 360 and academic structure, followed by attendance, timetable, examinations, finance, admissions, and service modules. Each module must include persistence, authorization, validation, auditability, responsive behavior, and test coverage before it is considered complete.
