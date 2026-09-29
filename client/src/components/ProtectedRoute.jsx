@@ -15,7 +15,8 @@ export default function ProtectedRoute({ children, roles }) {
 
   if (!user) return <Navigate to="/login" replace />
   if (roles && !roles.includes(user.role)) {
-    return <Navigate to={`/${user.role}/dashboard`} replace />
+    const isInstitutionOperator = ['admin', 'SUPER_ADMIN', 'INSTITUTION_ADMIN', 'PRINCIPAL_DIRECTOR', 'ACADEMIC_ADMIN'].includes(user.role)
+    return <Navigate to={isInstitutionOperator ? '/dashboard' : `/${user.role}/dashboard`} replace />
   }
   return children
 }

@@ -20,10 +20,11 @@ const resultRoutes = require('./routes/resultRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const setupRoutes = require('./routes/setupRoutes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL || true }));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -40,6 +41,7 @@ app.use('/api/results', resultRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/setup', setupRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -50,8 +52,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+connectDB();

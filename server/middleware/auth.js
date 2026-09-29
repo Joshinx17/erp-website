@@ -29,4 +29,16 @@ const authorize = (...roles) => {
   };
 };
 
-module.exports = { protect, authorize };
+const rolePermissions = {
+  admin: ['*'], SUPER_ADMIN: ['*'], INSTITUTION_ADMIN: ['*'], PRINCIPAL_DIRECTOR: ['student.read', 'student.create', 'student.update', 'attendance.report', 'exam.create', 'exam.marks.enter'],
+  ACADEMIC_ADMIN: ['student.read', 'student.create', 'student.update', 'attendance.mark', 'attendance.edit', 'attendance.report', 'exam.create', 'exam.marks.enter'],
+  teacher: ['student.read', 'attendance.mark', 'exam.marks.enter'], TEACHER_FACULTY: ['student.read', 'attendance.mark', 'exam.marks.enter'],
+  student: ['student.self.read'], STUDENT: ['student.self.read'], parent: ['student.linked.read'], PARENT: ['student.linked.read'],
+};
+const requirePermission = (...permissions) => (req, res, next) => {
+  const granted = new Set([...(rolePermissions[req.user.role] || []), ...(req.user.permissions || [])]);
+  if (granted.has('*') || permissions.every((permission) => granted.has(permission))) return next();
+  return res.status(403).json({ message: 'You do not have permission for this action.' });
+};
+
+module.exports = { protect, authorize, requirePermission };

@@ -81,11 +81,15 @@ exports.login = async (req, res) => {
       return res.status(403).json({ message: 'Account is deactivated. Contact admin.' });
     }
 
+    user.lastLoginAt = new Date();
+    await user.save();
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
+      institution: user.institution,
+      campus: user.campus,
       token: generateToken(user._id),
     });
   } catch (error) {

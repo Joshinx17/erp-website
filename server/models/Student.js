@@ -8,6 +8,7 @@ const studentSchema = new mongoose.Schema({
   section: { type: String, default: 'A' },
   fatherName: { type: String, default: '' },
   motherName: { type: String, default: '' },
+  deletedAt: { type: Date, default: null },
 });
 
 module.exports = User.discriminator('student', studentSchema);
